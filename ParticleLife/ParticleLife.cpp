@@ -64,7 +64,7 @@ int main()
 	unsigned int numThreads = 4;
 
 	sf::RenderWindow window;
-	window.create(sf::VideoMode(windowX, windowY), "Cellular Automata");
+	window.create(sf::VideoMode(windowX, windowY), "Particle Life");
 	window.setFramerateLimit(60);
 
 	int nFPS = 60;
