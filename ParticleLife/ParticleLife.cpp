@@ -61,7 +61,7 @@ int main()
 
 	sf::Clock clock;
 	bool multiThreaded = true;
-	unsigned int numThreads = 4;
+	unsigned int numThreads = std::thread::hardware_concurrency();
 
 	sf::RenderWindow window;
 	window.create(sf::VideoMode(windowX, windowY), "Particle Life");
