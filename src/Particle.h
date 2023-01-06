@@ -25,6 +25,8 @@ private:
 	sf::Vector2f velocity;
 
 public:
+	const float windowXsize = 2200.0f;
+	const float windowYsize = 1200.0f;
 	int getId() const;
 	int getType() const;
 

@@ -40,8 +40,8 @@ void printNumberParticles(GroupParticle& group)
 
 int main()
 {
-	const unsigned int windowX = 1500;
-	const unsigned int windowY = 1000;
+	const unsigned int windowX = 2200;
+	const unsigned int windowY = 1200;
 
 	sf::Font font;
 

@@ -238,10 +238,10 @@ sf::Vector2f Force::getForceVector(const Particle& p1, const Particle& p2) const
 
 
 	// torus
-	if (deltaX > 750.0f) { deltaX = -1500.0f + deltaX; }
-	if (deltaX < -750.0f) { deltaX = 1500.0f + deltaX; }
-	if (deltaY > 500.0f) { deltaY = -1000.0f + deltaY; }
-	if (deltaY < -500.0f) { deltaY = 1000.0f + deltaY; }
+	if (deltaX > windowXsize / 2) { deltaX = -windowXsize + deltaX; }
+	if (deltaX < -windowXsize / 2) { deltaX = windowXsize + deltaX; }
+	if (deltaY > windowYsize / 2) { deltaY = -windowYsize + deltaY; }
+	if (deltaY < -windowYsize / 2) { deltaY = windowYsize + deltaY; }
 
 	float distance = sqrtf(deltaX * deltaX + deltaY * deltaY);
 

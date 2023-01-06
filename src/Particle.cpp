@@ -14,7 +14,7 @@ Particle::Particle(int inType) : type(inType)
 
 	rnd.setSeed();
 	// 0 < x < 1200, 0 < y < 800
-	position = { rnd(0.0f, 1500.0f), rnd(0.0f, 1000.0f) };
+	position = { rnd(0.0f, windowXsize), rnd(0.0f, windowYsize) };
 	// between -1 and 1
 	velocity = { rnd(-1.0f, 1.0f), rnd(-1.0f, 1.0f) };
 	velocity = velocity * ParticleType::getRadius(type);
@@ -77,13 +77,13 @@ void Particle::move()
 	float mult = 4.0f;
 
 	position = position + velocity;
-	if (position.x < 0.0f + ParticleType::getRadius(type) || position.x > 1500.0f - ParticleType::getRadius(type))
+	if (position.x < 0.0f + ParticleType::getRadius(type) || position.x > windowXsize - ParticleType::getRadius(type))
 	{
 		velocity.x = -velocity.x * mult;
 		velocity.y = velocity.y * mult;
 		position = posSave;
 	}
-	if (position.y < 0.0f + ParticleType::getRadius(type) || position.y > 1000.0f - ParticleType::getRadius(type))
+	if (position.y < 0.0f + ParticleType::getRadius(type) || position.y > windowYsize - ParticleType::getRadius(type))
 	{
 		velocity.x = velocity.x * mult;
 		velocity.y = -velocity.y * mult;
@@ -95,10 +95,10 @@ void Particle::move()
 	// torus
 
 	position = position + velocity;
-	if (position.x < 0.0f) { position.x += 1500.0f; }
-	if (position.x > 1500.0f) { position.x -= 1500.0f; }
-	if (position.y < 0.0f) { position.y += 1000.0f; }
-	if (position.y > 1000.0f) { position.y -= 1000.0f; }
+	if (position.x < 0.0f) { position.x += windowXsize; }
+	if (position.x > windowXsize) { position.x -= windowXsize; }
+	if (position.y < 0.0f) { position.y += windowYsize; }
+	if (position.y > windowYsize) { position.y -= windowYsize; }
 	shapeParticle.setPosition(position);
 
 

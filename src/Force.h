@@ -25,6 +25,8 @@ private:
 	std::vector<std::vector<std::vector<float>>> forceVector;
 
 public:
+	const float windowXsize = 2200.0f;
+	const float windowYsize = 1200.0f;
 	void zeroForceMatrix();
 	void calculateForceMatrix();
 	void calculateForceVector();
