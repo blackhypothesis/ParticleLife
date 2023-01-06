@@ -20,7 +20,7 @@ ValueSetter::ValueSetter()
 	}
 	vecUpDown[1]->rotate(180.0f);
 
-	fontConsolas.loadFromFile("Consolas.ttf");
+	fontConsolas.loadFromFile("/home/marcel/eclipse-workspace/ParticleLife/src/Consolas.ttf");
 
 	parameter.setFont(fontConsolas);
 	parameter.setCharacterSize(16);

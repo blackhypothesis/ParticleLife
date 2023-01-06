@@ -45,7 +45,7 @@ int main()
 
 	sf::Font font;
 
-	if (!font.loadFromFile("Consolas.ttf"))
+	if (!font.loadFromFile("/home/marcel/eclipse-workspace/ParticleLife/src/Consolas.ttf"))
 	{
 		std::cerr << "cannot open font consolas\n";
 		return EXIT_FAILURE;
@@ -103,6 +103,7 @@ int main()
 			buttonReleased = false;
 
 			if (event.type == sf::Event::MouseButtonPressed)
+			{
 				if (event.mouseButton.button == sf::Mouse::Left)
 				{
 					buttonPressed = true;
@@ -110,6 +111,7 @@ int main()
 				}
 				else
 					buttonPressed = false;
+			}
 
 			if (event.type == sf::Event::MouseButtonReleased)
 				if (event.mouseButton.button == sf::Mouse::Left)
@@ -176,6 +178,12 @@ int main()
 				{
 					force.randomize();
 					// editor.mouseAction(mousePos, force);
+					fe.updateVecForceP1P2();
+				}
+
+				if (event.key.code == sf::Keyboard::Z)
+				{
+					force.zero();
 					fe.updateVecForceP1P2();
 				}
 

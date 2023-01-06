@@ -20,6 +20,48 @@ Force::~Force()
 {
 }
 
+void Force::zeroForceMatrix()
+{
+	// initialize forceMatrix (p1, p2, forcePoints with(distance and force))
+
+	forceMatrix.clear();
+
+	for (size_t p1 = 0; p1 < numberParticlesType; p1++)
+	{
+		forceMatrix.push_back(std::vector<std::vector<std::map<std::string, float>>>());
+		//float maxDistance = ParticleType::getMaxForceDistance(p1);
+
+		for (size_t p2 = 0; p2 < numberParticlesType; p2++)
+		{
+			forceMatrix[p1].push_back(std::vector<std::map<std::string, float>>());
+
+			for (size_t point = 0; point < numberDistancePoints; point++)
+			{
+				forceMatrix[p1][p2].push_back(std::map<std::string, float>());
+
+				forceMatrix[p1][p2][point].insert(std::make_pair("distance", 0.0f));
+				forceMatrix[p1][p2][point].insert(std::make_pair("force", 0.0f));
+			}
+
+			// start with distance = 0.0f
+			forceMatrix[p1][p2][0]["distance"] = 0.0f;
+			// force is negative in order the particles repel each other
+			forceMatrix[p1][p2][0]["force"] = 0.0f;
+
+			float distanceDistancePoint = maxDistance / (numberDistancePoints - 1);
+
+			for (size_t point = 1; point < numberDistancePoints - 1; point++)
+			{
+				forceMatrix[p1][p2][point]["distance"] = distanceDistancePoint * point;
+				forceMatrix[p1][p2][point]["force"] = 0.0f;
+			}
+
+			// add a last point with distance = maxDistance and force = 0
+			forceMatrix[p1][p2][numberDistancePoints - 1]["distance"] = maxDistance;
+			forceMatrix[p1][p2][numberDistancePoints - 1]["force"] = 0.0f;
+		}
+	}
+}
 
 void Force::calculateForceMatrix()
 {
@@ -120,6 +162,11 @@ void Force::calculateForceVector()
 	}
 }
 
+void Force::zero()
+{
+	zeroForceMatrix();
+	calculateForceVector();
+}
 
 void Force::randomize()
 {
@@ -196,7 +243,7 @@ sf::Vector2f Force::getForceVector(const Particle& p1, const Particle& p2) const
 	if (deltaY > 500.0f) { deltaY = -1000.0f + deltaY; }
 	if (deltaY < -500.0f) { deltaY = 1000.0f + deltaY; }
 
-	float distance = std::sqrtf(deltaX * deltaX + deltaY * deltaY);
+	float distance = sqrtf(deltaX * deltaX + deltaY * deltaY);
 
 	// scale distance to particle radius as unit
 	int qDistance = (int)(distance / p1.getRadius() / distanceQuantisation);

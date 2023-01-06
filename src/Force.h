@@ -25,10 +25,11 @@ private:
 	std::vector<std::vector<std::vector<float>>> forceVector;
 
 public:
+	void zeroForceMatrix();
 	void calculateForceMatrix();
 	void calculateForceVector();
 
-
+	void zero();
 	void randomize();
 	void shift(int, int, float);
 	void scale(int, int, float);

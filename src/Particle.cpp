@@ -4,6 +4,7 @@
 Particle::Particle()
 {
 	type = 0;
+	dead = false;
 }
 
 Particle::Particle(int inType) : type(inType)
@@ -71,18 +72,18 @@ void Particle::move()
 
 	
 	// reflection
-	/*
+    /*
 	sf::Vector2f posSave = position;
-	float mult = 2.0f;
+	float mult = 4.0f;
 
 	position = position + velocity;
-	if (position.x < 0.0f + radius || position.x > 1500.0f - radius)
+	if (position.x < 0.0f + ParticleType::getRadius(type) || position.x > 1500.0f - ParticleType::getRadius(type))
 	{
 		velocity.x = -velocity.x * mult;
 		velocity.y = velocity.y * mult;
 		position = posSave;
 	}
-	if (position.y < 0.0f + radius || position.y > 1000.0f - radius)
+	if (position.y < 0.0f + ParticleType::getRadius(type) || position.y > 1000.0f - ParticleType::getRadius(type))
 	{
 		velocity.x = velocity.x * mult;
 		velocity.y = -velocity.y * mult;
@@ -91,15 +92,15 @@ void Particle::move()
 	shapeParticle.setPosition(position);
 	*/
 
-
 	// torus
+
 	position = position + velocity;
 	if (position.x < 0.0f) { position.x += 1500.0f; }
 	if (position.x > 1500.0f) { position.x -= 1500.0f; }
 	if (position.y < 0.0f) { position.y += 1000.0f; }
 	if (position.y > 1000.0f) { position.y -= 1000.0f; }
 	shapeParticle.setPosition(position);
-	
+
 
 	// Friction
 	velocity.x = velocity.x * ParticleType::getFriction(type);
@@ -109,6 +110,5 @@ void Particle::move()
 void Particle::draw(sf::RenderTarget& target) const
 {
 	target.draw(shapeParticle);
-
 }
 

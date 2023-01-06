@@ -42,7 +42,7 @@ Graph::Graph(sf::Vector2f inPosition, int inP1, int inP2, Force& inForce) :
 	infoBox.setOutlineColor(sf::Color{ 0, 0, 128 });
 	infoBox.setOutlineThickness(1);
 
-	fontConsolas.loadFromFile("Consolas.ttf");
+	fontConsolas.loadFromFile("/home/marcel/eclipse-workspace/ParticleLife/src/Consolas.ttf");
 	pointInfo.setFont(fontConsolas);
 	pointInfo.setCharacterSize(14);
 	pointInfo.setFillColor(sf::Color::White);
@@ -159,7 +159,7 @@ void Graph::updateVecForceP1P2()
 
 bool Graph::mouseAction(sf::Vector2i mousePos, bool buttonPressed, bool buttonReleased)
 {
-	// mouse position within graph rectange?
+	// mouse position within graph rectangle?
 
 	if (!(mousePos.x > position.x && mousePos.x < position.x + size.x && mousePos.y > position.y + gridBorder && mousePos.y < position.y + size.y - gridBorder))
 	{
@@ -233,7 +233,7 @@ bool Graph::mouseAction(sf::Vector2i mousePos, bool buttonPressed, bool buttonRe
 			xMaxPos = vecPlotPoint[pointSelected + 1].getPosition().x;
 		}
 
-		// drag and drop funkctionality
+		// drag and drop functionality
 		// if mousePos is within the range, calculate the new position of the point
 		if (mousePos.x > xMinPos && mousePos.x < xMaxPos)
 		{

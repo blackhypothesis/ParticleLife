@@ -4,6 +4,7 @@
 #include <iterator>
 #include <iomanip>
 #include <sstream>
+#include <memory>
 
 #include <SFML/Graphics.hpp>
 #include "ParticleType.h"
